@@ -30,14 +30,14 @@ class ShortUrl
     $this->pdo = $this->connection();
   }
 	
-	/**
-	 * Connect to the database
-	 */
-	public function connection() {
-	  $pdo = new PDO(DB_SERVER . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
-	  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
-	  return $pdo;
-	}
+  /**
+   * Connect to the database
+   */
+  public function connection() {
+    $pdo = new PDO(DB_SERVER . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
+    return $pdo;
+  }
 
   /** 
    * Performs validation of the URLs format, connects to the URL to make sure it exists, 
@@ -87,7 +87,7 @@ class ShortUrl
  
   /**
    * Retrieve a long URL from a short string.
-	 *
+   *
    * @param string $string the short string associated with a long URL
    * @return string the long URL
    */
@@ -137,7 +137,7 @@ class ShortUrl
    * @return string|boolean the short url if it exists - false if it does not
    */
   protected function urlExistsInDb($url) {
-	  $params = array(
+    $params = array(
       "long_url" => $url
     );
     $query = "SELECT short_url FROM " . self::$table .
@@ -159,20 +159,20 @@ class ShortUrl
    * @param int $id the integer to be converted
    * @return string the created short string
    */
-	protected function convertIntToShortString($id, $base=62) {
-	  $id = intval($id);
+  protected function convertIntToShortString($id, $base=62) {
+    $id = intval($id);
     if ($id < 1) {
       throw new \Exception("The ID is not a valid integer");
     }
-	  $str = '';
-	  do {
-		$i = $id % $base;
-		$str = self::$chars[$i] . $str;
-		$id = ($id - $i) / $base;
-	  } while($id > 0);
+    $str = '';
+    do {
+      $i = $id % $base;
+      $str = self::$chars[$i] . $str;
+      $id = ($id - $i) / $base;
+    } while($id > 0);
 		
-	  return $str;
-	}
+    return $str;
+  }
 
   /**
    * Updates the database row with the short string. If
@@ -184,12 +184,12 @@ class ShortUrl
    * @return boolean on success
    */
   protected function insertShortStringInDb($id, $string) {
-	  $params = array(
+    $params = array(
       "short_url" => $string,
       "id" => $id,
     );
     $query = "UPDATE " . self::$table .
-        " SET short_url = :short_url WHERE id = :id";
+      " SET short_url = :short_url WHERE id = :id";
     $stmnt = $this->pdo->prepare($query);
     $stmnt->execute($params);
 
@@ -211,7 +211,7 @@ class ShortUrl
       "short_url" => $string,
     );
     $query = "SELECT id, long_url FROM " . self::$table .
-        " WHERE short_url = :short_url LIMIT 1";
+      " WHERE short_url = :short_url LIMIT 1";
     $stmt = $this->pdo->prepare($query);
     $stmt->execute($params);  
 
