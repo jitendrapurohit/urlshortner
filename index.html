@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>URL Shortener</title>
+<h4> My Awesome URL Shortener </h4>
+<script src="js/jquery-1.8.2.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+	$("#btnSubmit").click(function () {
+      var longUrl = $("#url").val();
+	  $.ajax({
+	    url: "http://localhost/urlshortner/submit.php",
+	    type: "POST",
+	    dataType: "json",
+	    data: {url:longUrl},
+	    success: function (response) {
+  	      $('#outputMsg').html('ShortURL - <a href=' + response.shortUrl + '>' + response.shortUrl + '</a>');
+  	    },
+	    error: function (err) {
+		  $('#outputMsg').html(err.responseText);
+		},
+	  });
+    });
+  });
+</script>
+</head>
+<body>
+  <label for="url">Paste your long URL here : </label>
+  <input type="text" name="url" id="url">
+  <input id="btnSubmit" type='submit' value="Shorten URL">
+  <br /><br />
+  <div id='outputMsg'></div>
+</body>
+</html>
