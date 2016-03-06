@@ -16,14 +16,14 @@ if (!empty($string)) {
   //prefix the string with the shorturl defined
   $url = SHORTURL_PREFIX . $string;
   echo json_encode(array(
-  	'status' => 'success',
-  	'longUrl' => $_REQUEST["long_url"],
-  	'shortUrl' => $url,
+    'status' => 'success',
+    'longUrl' => $_REQUEST["long_url"],
+    'shortUrl' => $url,
   ), JSON_UNESCAPED_SLASHES);
 }
 else {
   echo json_encode(array(
-  	'status' => 'Failed', 
-  	'Error' => 'URL cannot be shortened.'
+    'status' => 'Failed', 
+    'Error' => 'URL cannot be shortened.'
   ));
 }
