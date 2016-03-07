@@ -1,4 +1,4 @@
-This is a complete source code for building your own short url.
+This is a complete source code for building your own short url. Download the zip file and rename the folder to "urlshortner".
 
 Please follow below steps to execute the project.
 
