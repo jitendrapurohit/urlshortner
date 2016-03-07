@@ -8,7 +8,7 @@
     $("#btnSubmit").click(function () {
       var longUrl = $("#url").val();
       $.ajax({
-        url: "http://localhost/urlshortner/submit.php",
+        url: "submit.php",
         type: "POST",
         dataType: "json",
         data: {url:longUrl},
