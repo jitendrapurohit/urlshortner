@@ -3,7 +3,9 @@ This is a complete source code for building your own short url. Download the zip
 Please follow below steps to execute the project.
 
 1) Run schema.php to setup the database and tables needed for the project (URL - http://localhost/urlshortner/schema.php).
+
 2) This project contains a config.php file where you can provide a custom name for your DB and tables.
+
 3) Open http://localhost/urlshortner/ to see the sample web page which inputs a long url(eg. http://example.com)
    and converts it into a shorter format - Sorry for no CSS;)
 
